@@ -14,6 +14,14 @@ public class Customer extends User {
         DeliveryAdress = deliveryAdress;
     }
 
+    public Customer(String userName, String password,String name, String firstName, String eMail, String deliveryAdress) {
+        super(userName,password);
+        this.name = name;
+        this.firstName = firstName;
+        this.eMail = eMail;
+        DeliveryAdress = deliveryAdress;
+    }
+
     public String getName() {
         return name;
     }

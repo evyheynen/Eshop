@@ -1,7 +1,9 @@
 package be.vdab.be.vdab.dao;
 
+import be.vdab.entiteiten.Product;
+
 import java.util.List;
 
 public interface ProductDAO {
-    List<ProductDAO>findProducts(String productname);
+    List<Product> findProducts(String productname);
 }
