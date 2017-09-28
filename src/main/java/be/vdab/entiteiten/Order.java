@@ -7,6 +7,10 @@ public class Order {
     private String paymentMethod;
     private int orderTotal;
     private Date date;
+    private int idCustomer;
+    private int idEshop;
+    private int amount;
+    private int idProduct;
 
 
     public Order(int idOrder, String paymentMethod, int orderTotal, Date date) {
@@ -54,6 +58,21 @@ public class Order {
         this.date = date;
     }
 
+    public int getIdCustomer() {
+        return idCustomer;
+    }
+
+    public int getIdEshop() {
+        return idEshop;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getIdProduct() {
+        return idProduct;
+    }
 
     @Override
     public String toString() {

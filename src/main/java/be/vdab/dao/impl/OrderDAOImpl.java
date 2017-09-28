@@ -47,20 +47,38 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void saveOrder(Order order) {
-        String sql = "INSERT INTO Order (id, Payment method, Order Total, Date) VALUES(?,?,?,?);";
+        String SQL_ORDERINSERT = "INSERT INTO eshop.order (paymentMethod, Order Total, Date, customer_id1, eshop_id1) VALUES (?, ?, ?, ?, ?)";
+        String SQL_ORDERDETAIL = "INSERT INTO orderdetail (Amount, product_id1, order_id1) VALUES (?, ?, ?)";
+        try (Connection connection = ConnectionDB.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_ORDERINSERT, Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement detailStatement = connection.prepareStatement(SQL_ORDERDETAIL)) {
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+            connection.setAutoCommit(false);
 
-        try (Connection con = ConnectionDB.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+            statement.setString(1, order.getPaymentMethod());
+            statement.setDouble(2, order.getOrderTotal());
+            statement.setDate(3, order.getDate());
+            statement.setLong(4, order.getIdCustomer());
+            statement.setLong(5, order.getIdEshop());
+            statement.executeUpdate();
 
-            stmt.setInt(1, order.getIdOrder());
-            stmt.setString(2, order.getPaymentMethod());
-            stmt.setInt(3, order.getOrderTotal());
-            stmt.setDate(4, (Date) order.getDate());
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            int orderId = resultSet.getInt(1);
 
-            int result = stmt.executeUpdate();
-            LOGGER.debug(result + " orders saved");
+            System.out.println(statement);
+
+            detailStatement.setDouble(1, order.getAmount());
+            detailStatement.setLong(2, order.getIdProduct());
+            detailStatement.setLong(3, orderId);        //orderId is pas in de vorige stap aangemaakt. Deze kan je met getGeneratedKeys() ophalen op het statement.
+            System.out.println(detailStatement);
+            detailStatement.executeUpdate();
+
+            connection.commit();
+
 
         } catch (SQLException e) {
-            LOGGER.error("no orders saved " + e);
+            e.printStackTrace();
         }
     }
 

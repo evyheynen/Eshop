@@ -1,6 +1,7 @@
 package be.vdab.be.vdab.dao;
 
 import be.vdab.entiteiten.Basket;
+import be.vdab.entiteiten.Order;
 import be.vdab.entiteiten.Product;
 
 public interface BasketInterface {
@@ -17,5 +18,5 @@ public interface BasketInterface {
 
     public void clearBasket() ;
 
-    void  updateProduct(Product product);
+    void  saveBasket(Order order);
 }
