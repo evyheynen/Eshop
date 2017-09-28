@@ -7,6 +7,9 @@ import be.vdab.be.vdab.dao.ShopDAO;
 import be.vdab.entiteiten.Customer;
 import be.vdab.entiteiten.Order;
 
+import java.sql.Date;
+
+
 public class TestApp {
     private static ShopDAO s = new ShopDAOImpl();
     private static CustomerDAO c = new CustomerDAOImpl();
@@ -22,5 +25,6 @@ public class TestApp {
         System.out.println(c2.findByLoginAndUsername("Luc", "Luc123"));
         p.findProducts("toilettas").forEach(System.out::println);
         order.findOrdersForCustomer(luc);
+        order.saveOrder(new Order("paypal",3, new Date(2017,9,28)));
     }
 }

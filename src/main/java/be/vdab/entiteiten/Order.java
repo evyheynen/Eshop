@@ -1,12 +1,13 @@
 package be.vdab.entiteiten;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Order {
     private int idOrder;
     private String paymentMethod;
     private int orderTotal;
     private Date date;
+
 
     public Order(int idOrder, String paymentMethod, int orderTotal, Date date) {
         this.idOrder = idOrder;
@@ -52,6 +53,7 @@ public class Order {
     public void setDate(Date date) {
         this.date = date;
     }
+
 
     @Override
     public String toString() {

@@ -6,11 +6,10 @@ public class Product {
     private double price;
     private int stock;
 
-    public Product(int idProduct, String name, double price, int stock) {
+    public Product(int idProduct, String name, double price) {
         this.idProduct = idProduct;
         this.name = name;
         this.price = price;
-        this.stock = stock;
     }
 
     public int getIdProduct() {
