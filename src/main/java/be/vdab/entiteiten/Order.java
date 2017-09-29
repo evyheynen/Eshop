@@ -3,6 +3,8 @@ package be.vdab.entiteiten;
 import java.sql.Date;
 
 public class Order {
+    private static Basket basket;
+
     private int idOrder;
     private String paymentMethod;
     private int orderTotal;
@@ -12,18 +14,25 @@ public class Order {
     private int amount;
     private int idProduct;
 
-
-    public Order(int idOrder, String paymentMethod, int orderTotal, Date date) {
+    public Order(int idOrder, String paymentMethod, int orderTotal, Date date, int idCustomer, int idEshop, int amount, int idProduct) {
         this.idOrder = idOrder;
         this.paymentMethod = paymentMethod;
         this.orderTotal = orderTotal;
         this.date = date;
+        this.idCustomer = idCustomer;
+        this.idEshop = idEshop;
+        this.amount = amount;
+        this.idProduct = idProduct;
     }
 
-    public Order(String paymentMethod, int orderTotal, Date date) {
+    public Order(String paymentMethod, int orderTotal, Date date, int idCustomer, int idEshop, int amount, int idProduct) {
         this.paymentMethod = paymentMethod;
         this.orderTotal = orderTotal;
         this.date = date;
+        this.idCustomer = idCustomer;
+        this.idEshop = idEshop;
+        this.amount = amount;
+        this.idProduct = idProduct;
     }
 
     public int getIdOrder() {
@@ -74,13 +83,19 @@ public class Order {
         return idProduct;
     }
 
+
+
     @Override
     public String toString() {
-        return "OrderDAO{" +
+        return "Order{" +
                 "idOrder=" + idOrder +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", orderTotal=" + orderTotal +
                 ", date=" + date +
+                ", idCustomer=" + idCustomer +
+                ", idEshop=" + idEshop +
+                ", amount=" + amount +
+                ", idProduct=" + idProduct +
                 '}';
     }
 }

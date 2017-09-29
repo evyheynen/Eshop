@@ -63,7 +63,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 String password1 = rs.getString("Password");
 
                 user = new User(id, userName, password1);
-                LOGGER.debug("Found ligin and username");
+                LOGGER.debug("Found login and username");
 
             }
         } catch (SQLException e) {

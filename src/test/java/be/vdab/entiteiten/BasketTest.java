@@ -14,10 +14,13 @@ public class BasketTest {
 
     private Basket basket = new Basket();
     private Product dreft;
+    private Product fanta;
+    private Product cola;
+
     @Before
     public void init(){
-        Product cola=new Product(100,"Cola",3.20);
-        Product fanta=new Product(101,"Fanta",3.50);
+        cola=new Product(100,"Cola",3.20);
+        fanta=new Product(101,"Fanta",3.50);
         dreft = new Product(102,"Dreft",2.00);
         Map<Product, Integer> map= new HashMap<>();
         map.put(cola, 3);
@@ -43,7 +46,7 @@ public class BasketTest {
 
     @Test
     public void removerProductFromBasket() {
-        basket.removerProductFromBasket(dreft);
+        basket.removeProductFromBasket(dreft);
         assertThat(basket.getBasket()).hasSize(2);
     }
 

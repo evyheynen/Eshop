@@ -14,7 +14,7 @@ public interface BasketInterface {
 
     public void addToBasket(Product p, int amount);
 
-    public void removerProductFromBasket(Product product) ;
+    public void removeProductFromBasket(Product product) ;
 
     public void clearBasket() ;
 

@@ -25,14 +25,17 @@ public class OrderDAOImpl implements OrderDAO {
             stmt.setInt(1, customer.getId());
             ResultSet rs=stmt.executeQuery();
                 while (rs.next()){
-                    int id=rs.getInt("id");
+                    int idOrder=rs.getInt("id");
                     String paymentMethod=rs.getString("Payment method");
                     int orderTotal=rs.getInt("Order Total");
                     Date date=rs.getDate("Date");
-                    int customerId=rs.getInt("customer_id1");
-                    int eshopid=rs.getInt("eshop_id1");
+                    int idCustomer=rs.getInt("customer_id1");
+                    int idEshop=rs.getInt("eshop_id1");
+                    int amount=rs.getInt("Amount");
+                    int idProduct=rs.getInt("Productid");
 
-                    orderlist.add(new Order(id,paymentMethod,orderTotal,date));
+
+                    orderlist.add(new Order(idOrder, paymentMethod, orderTotal, date, idCustomer, idEshop, amount, idProduct));
                     LOGGER.debug("found orders for customer");
             }
 
