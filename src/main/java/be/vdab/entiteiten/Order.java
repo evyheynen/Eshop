@@ -3,7 +3,7 @@ package be.vdab.entiteiten;
 import java.sql.Date;
 
 public class Order {
-    private static Basket basket;
+    private static Basket basket1;
 
     private int idOrder;
     private String paymentMethod;
@@ -13,6 +13,7 @@ public class Order {
     private int idEshop;
     private int amount;
     private int idProduct;
+    private Basket basket;
 
     public Order(int idOrder, String paymentMethod, int orderTotal, Date date, int idCustomer, int idEshop, int amount, int idProduct) {
         this.idOrder = idOrder;
@@ -23,16 +24,16 @@ public class Order {
         this.idEshop = idEshop;
         this.amount = amount;
         this.idProduct = idProduct;
+        this.basket=basket;
     }
 
-    public Order(String paymentMethod, int orderTotal, Date date, int idCustomer, int idEshop, int amount, int idProduct) {
+    public Order(String paymentMethod, int orderTotal, Date date, int idCustomer, int idEshop,Basket basket1) {
         this.paymentMethod = paymentMethod;
         this.orderTotal = orderTotal;
         this.date = date;
         this.idCustomer = idCustomer;
         this.idEshop = idEshop;
-        this.amount = amount;
-        this.idProduct = idProduct;
+        this.basket1=basket1;
     }
 
     public int getIdOrder() {
@@ -83,7 +84,13 @@ public class Order {
         return idProduct;
     }
 
+    public static Basket getBasket1() {
+        return basket1;
+    }
 
+    public static void setBasket1(Basket basket1) {
+        Order.basket1 = basket1;
+    }
 
     @Override
     public String toString() {

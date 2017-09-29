@@ -51,7 +51,7 @@ public class Basket implements BasketInterface {
 
         @Override
         public void saveBasket (Order order){
-            String SQL_ORDERINSERT = "INSERT INTO eshop.order (Payment method, Order Total, Date, customer_id1, eshop_id1) VALUES (?, ?, ?, ?, ?)";
+            String SQL_ORDERINSERT = "INSERT INTO eshop.order (id,Payment method, Order Total, Date, customer_id1, eshop_id1) VALUES (null,?, ?, ?, ?, ?)";
             String SQL_ORDERDETAIL = "INSERT INTO eshop.orderdetail (Amount, product_id1, order_id1) VALUES (?, ?, ?)";
             String SQL_PRODUCT="UPDATE eshop.product SET Stock=? WHERE product_id1=? ";
 
@@ -76,10 +76,13 @@ public class Basket implements BasketInterface {
 
                 System.out.println(statement);
 
+                //basket.getBasket().forEach()
                 detailStatement.setDouble(1, order.getAmount());
                 detailStatement.setLong(2, order.getIdProduct());
                 detailStatement.setLong(3, orderId);        //orderId is pas in de vorige stap aangemaakt. Deze kan je met getGeneratedKeys() ophalen op het statement.
-                System.out.println(detailStatement);
+
+                System.out.println(statement);
+
                 detailStatement.executeUpdate();
 
                 productstatement.setInt(2,order.getIdProduct());
